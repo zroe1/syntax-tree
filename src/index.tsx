@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import KonvaCurve from "./components/test";
 
 const App: React.FC = () => {
-  return <div>Hello, React with TypeScript and Yarn!</div>;
+  return <KonvaCurve />;
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
