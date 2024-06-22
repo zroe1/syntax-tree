@@ -25,7 +25,7 @@ const KonvaCurve = () => {
     };
 
     const bezierLine2 = new Konva.Shape({
-      stroke: "blue",
+      stroke: "black",
       strokeWidth: 5,
       sceneFunc: (ctx, shape) => {
         ctx.beginPath();
@@ -74,15 +74,15 @@ const KonvaCurve = () => {
     }
 
     // Add labels
-    createLabel("Left", bezier2.start[0] - 10, bezier2.start[1] - 30);
-    createLabel("Right", bezier2.end[0] - 10, bezier2.end[1] - 30);
+    createLabel("Left", bezier2.start[0] - 10, bezier2.start[1] - 35);
+    createLabel("Right", bezier2.end[0] - 10, bezier2.end[1] - 35);
 
     return () => {
       stage.destroy();
     };
   }, []);
 
-  return <div ref={containerRef} style={{ backgroundColor: "#f0f0f0" }} />;
+  return <div ref={containerRef} style={{ backgroundColor: "rgb(255, 255, 255)" }} />;
 };
 
 export default KonvaCurve;
