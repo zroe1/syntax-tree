@@ -17,30 +17,11 @@ const KonvaCurve = () => {
     const layer = new Konva.Layer();
     stage.add(layer);
 
-    // function to build anchor point
-    const buildAnchor = (x: number, y: number) => {
-      const anchor = new Konva.Circle({
-        x: x,
-        y: y,
-        radius: 20,
-        stroke: "#666",
-        fill: "#ddd",
-        strokeWidth: 2,
-        draggable: true,
-      });
-      layer.add(anchor);
-
-      // add hover styling
-      anchor.on("mouseover", function () {
-        document.body.style.cursor = "pointer";
-        this.strokeWidth(4);
-      });
-      anchor.on("mouseout", function () {
-        document.body.style.cursor = "default";
-        this.strokeWidth(2);
-      });
-
-      return anchor;
+    const bezier2 = {
+      start: [200, 200],
+      control1: [200, 400],
+      control2: [400, 400],
+      end: [500, 100],
     };
 
     const bezierLine2 = new Konva.Shape({
@@ -62,12 +43,39 @@ const KonvaCurve = () => {
     });
     layer.add(bezierLine2);
 
-    const bezier2 = {
-      start: [200, 200],
-      control1: [200, 400],
-      control2: [400, 400],
-      end: [400, 200],
-    };
+    // Function to create labeled text box
+    function createLabel(text: string, x: number, y: number) {
+      const padding = 5;
+      const textNode = new Konva.Text({
+        text: text,
+        fontSize: 18,
+        fontFamily: "Arial",
+        fill: "black",
+        padding: padding,
+        x: x,
+        y: y,
+      });
+
+      const textWidth = textNode.width();
+      const textHeight = textNode.height();
+
+      const rect = new Konva.Rect({
+        x: x - padding,
+        y: y - padding,
+        width: textWidth + padding * 2,
+        height: textHeight + padding * 2,
+        stroke: "black",
+        strokeWidth: 2,
+        cornerRadius: 5,
+      });
+
+      layer.add(rect);
+      layer.add(textNode);
+    }
+
+    // Add labels
+    createLabel("Left", bezier2.start[0] - 10, bezier2.start[1] - 30);
+    createLabel("Right", bezier2.end[0] - 10, bezier2.end[1] - 30);
 
     return () => {
       stage.destroy();
