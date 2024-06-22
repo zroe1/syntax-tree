@@ -43,42 +43,30 @@ const KonvaCurve = () => {
       return anchor;
     };
 
-    // create custom shape for curve
-    const bezierLine = new Konva.Shape({
+    const bezierLine2 = new Konva.Shape({
       stroke: "blue",
       strokeWidth: 5,
       sceneFunc: (ctx, shape) => {
         ctx.beginPath();
-        ctx.moveTo(bezier.start.x(), bezier.start.y());
+        ctx.moveTo(bezier2.start[0], bezier2.start[1]);
         ctx.bezierCurveTo(
-          bezier.control1.x(),
-          bezier.control1.y(),
-          bezier.control2.x(),
-          bezier.control2.y(),
-          bezier.end.x(),
-          bezier.end.y()
+          bezier2.control1[0],
+          bezier2.control1[1],
+          bezier2.control2[0],
+          bezier2.control2[1],
+          bezier2.end[0],
+          bezier2.end[1]
         );
         ctx.fillStrokeShape(shape);
       },
     });
-    layer.add(bezierLine);
+    layer.add(bezierLine2);
 
-    const bezierLinePath = new Konva.Line({
-      dash: [10, 10, 0, 10],
-      strokeWidth: 3,
-      stroke: "black",
-      lineCap: "round",
-      id: "bezierLinePath",
-      opacity: 0.3,
-      points: [0, 0],
-    });
-    layer.add(bezierLinePath);
-
-    const bezier = {
-      start: buildAnchor(280, 20),
-      control1: buildAnchor(530, 40),
-      control2: buildAnchor(480, 150),
-      end: buildAnchor(300, 150),
+    const bezier2 = {
+      start: [200, 200],
+      control1: [200, 400],
+      control2: [400, 400],
+      end: [400, 200],
     };
 
     return () => {
