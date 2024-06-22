@@ -27,6 +27,7 @@ const KonvaCurve = () => {
     const bezierLine2 = new Konva.Shape({
       stroke: "black",
       strokeWidth: 5,
+      lineCap: "round",
       sceneFunc: (ctx, shape) => {
         ctx.beginPath();
         ctx.moveTo(bezier2.start[0], bezier2.start[1]);
@@ -49,7 +50,7 @@ const KonvaCurve = () => {
       const textNode = new Konva.Text({
         text: text,
         fontSize: 18,
-        fontFamily: "Arial",
+        fontFamily: "Times New Roman",
         fill: "black",
         padding: padding,
         x: x,
@@ -74,8 +75,8 @@ const KonvaCurve = () => {
     }
 
     // Add labels
-    createLabel("Left", bezier2.start[0] - 10, bezier2.start[1] - 35);
-    createLabel("Right", bezier2.end[0] - 10, bezier2.end[1] - 35);
+    createLabel("Left", bezier2.start[0] - 20, bezier2.start[1] - 45);
+    createLabel("Right", bezier2.end[0] - 20, bezier2.end[1] - 45);
 
     return () => {
       stage.destroy();

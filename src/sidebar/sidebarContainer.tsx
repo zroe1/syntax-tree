@@ -4,7 +4,10 @@ import * as S from "./styled";
 function SidebarContainer() {
   return (
     <S.sideBarContainerDiv>
-      <S.sidebarContainerInnerDiv>Sidebar Container</S.sidebarContainerInnerDiv>
+      <S.sidebarContainerInnerDiv>
+        <S.sideBarTitle>Syntax Tree Creator</S.sideBarTitle>
+        <S.divider />
+      </S.sidebarContainerInnerDiv>
     </S.sideBarContainerDiv>
   );
 }
