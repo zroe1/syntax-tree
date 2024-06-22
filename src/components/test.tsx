@@ -10,7 +10,7 @@ const KonvaCurve = () => {
 
     const stage = new Konva.Stage({
       container: containerRef.current || "container",
-      width: width,
+      width: width / 2,
       height: height,
     });
 
@@ -82,7 +82,7 @@ const KonvaCurve = () => {
     };
   }, []);
 
-  return React.createElement("div", { ref: containerRef, style: { backgroundColor: "#f0f0f0" } });
+  return <div ref={containerRef} style={{ backgroundColor: "#f0f0f0" }} />;
 };
 
 export default KonvaCurve;
