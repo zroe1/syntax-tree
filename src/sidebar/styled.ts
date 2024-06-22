@@ -15,7 +15,7 @@ export const sidebarContainerInnerDiv = styled.div`
   width: 100%;
   height: 100%;
   background-color: #fffdf0;
-  padding: 20px;
+  padding: 5px 20px 10px 20px;
   border: 5px solid #ccd5ae;
   border-radius: 20px;
   box-sizing: border-box;
@@ -31,5 +31,17 @@ export const divider = styled.div`
 
 export const sideBarTitle = styled.h1`
   color: black;
+  font-family: "Roboto Slab", serif;
+`;
+
+export const sideBarSubHeader = styled.h2`
+  color: black;
+  font-weight: 400;
+  font-family: "Roboto Slab", serif;
+`;
+
+export const sideBarSmallSubHeader = styled.h3`
+  color: black;
+  font-weight: 400;
   font-family: "Roboto Slab", serif;
 `;
