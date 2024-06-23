@@ -19,43 +19,21 @@ const KonvaCurve = () => {
     const layer = new Konva.Layer();
     stage.add(layer);
 
-    const { getXPosition, createLabel } = useCalcNodePositions({
+    const { getXPosition, createLabel, createMovmentLine } = useCalcNodePositions({
       width: window.innerWidth,
       layer: layer,
     });
 
-    const bezier2 = {
-      start: [200, 200],
-      control1: [200, 400],
-      control2: [400, 400],
-      end: [500, 100],
-    };
+    const rootX = width / 4;
+    const rootY = 100;
+    createLabel("Root", rootX, 100, rootX, rootY, true);
+    createLabel("C1", getXPosition(rootX, 0, 4), 200, rootX, rootY);
+    console.log(getXPosition(rootX, 2, 4));
+    createLabel("C1", getXPosition(rootX, 1, 4), 300, getXPosition(rootX, 2, 4), 200);
+    createLabel("Calvin Roe", getXPosition(rootX, 2, 4), 200, rootX, rootY);
+    createLabel("C1", getXPosition(rootX, 3, 4), 200, rootX, rootY);
 
-    const bezierLine2 = new Konva.Shape({
-      stroke: "black",
-      strokeWidth: 5,
-      lineCap: "round",
-      sceneFunc: (ctx, shape) => {
-        ctx.beginPath();
-        ctx.moveTo(bezier2.start[0], bezier2.start[1]);
-        ctx.bezierCurveTo(
-          bezier2.control1[0],
-          bezier2.control1[1],
-          bezier2.control2[0],
-          bezier2.control2[1],
-          bezier2.end[0],
-          bezier2.end[1]
-        );
-        ctx.fillStrokeShape(shape);
-      },
-    });
-    layer.add(bezierLine2);
-
-    createLabel("Root", width / 4, 100);
-    createLabel("C1", getXPosition("c1", 0, 4), 200);
-    createLabel("C1", getXPosition("c1", 1, 4), 200);
-    createLabel("Calvin Roe", getXPosition("Calvin Roe", 2, 4), 200);
-    createLabel("C1", getXPosition("c1", 3, 4), 200);
+    createMovmentLine(getXPosition(rootX, 1, 4), 340, getXPosition(rootX, 3, 4), 240);
 
     return () => {
       stage.destroy();
