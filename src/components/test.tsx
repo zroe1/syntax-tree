@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import Konva from "konva";
+import useCalcNodePositions from "./hooks/useCalcNodePositions";
+
+const stageHeight = 100;
 
 const KonvaCurve = () => {
   const containerRef = useRef(null);
@@ -7,7 +10,6 @@ const KonvaCurve = () => {
   useEffect(() => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-
     const stage = new Konva.Stage({
       container: containerRef.current || "container",
       width: width / 2,
@@ -16,6 +18,11 @@ const KonvaCurve = () => {
 
     const layer = new Konva.Layer();
     stage.add(layer);
+
+    const { getXPosition, createLabel } = useCalcNodePositions({
+      width: window.innerWidth,
+      layer: layer,
+    });
 
     const bezier2 = {
       start: [200, 200],
@@ -44,39 +51,11 @@ const KonvaCurve = () => {
     });
     layer.add(bezierLine2);
 
-    // Function to create labeled text box
-    function createLabel(text: string, x: number, y: number) {
-      const padding = 5;
-      const textNode = new Konva.Text({
-        text: text,
-        fontSize: 18,
-        fontFamily: "Times New Roman",
-        fill: "black",
-        padding: padding,
-        x: x,
-        y: y,
-      });
-
-      const textWidth = textNode.width();
-      const textHeight = textNode.height();
-
-      const rect = new Konva.Rect({
-        x: x - padding,
-        y: y - padding,
-        width: textWidth + padding * 2,
-        height: textHeight + padding * 2,
-        stroke: "black",
-        strokeWidth: 2,
-        cornerRadius: 5,
-      });
-
-      layer.add(rect);
-      layer.add(textNode);
-    }
-
-    // Add labels
-    createLabel("Left", bezier2.start[0] - 20, bezier2.start[1] - 45);
-    createLabel("Right", bezier2.end[0] - 20, bezier2.end[1] - 45);
+    createLabel("Root", width / 4, 100);
+    createLabel("C1", getXPosition("c1", 0, 4), 200);
+    createLabel("C1", getXPosition("c1", 1, 4), 200);
+    createLabel("Calvin Roe", getXPosition("Calvin Roe", 2, 4), 200);
+    createLabel("C1", getXPosition("c1", 3, 4), 200);
 
     return () => {
       stage.destroy();
